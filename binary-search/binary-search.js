@@ -1,8 +1,16 @@
-'use strict';
+"use strict";
 
 // Complete this algo
 const binarySearch = (array, target) => {
-	
+  const mid = Math.floor(array.length / 2);
+  const firstHalf = array.slice(0, mid);
+  const secondHalf = array.slice(mid);
+
+  if (target <= firstHalf[firstHalf.length - 1]) {
+    return firstHalf.includes(target);
+  } else {
+    return secondHalf.includes(target);
+  }
 };
 
 /*
@@ -14,4 +22,4 @@ const binarySearch = (array, target) => {
 
 */
 
-module.exports = binarySearch
+module.exports = binarySearch;
