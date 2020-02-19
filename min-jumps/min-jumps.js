@@ -1,17 +1,23 @@
 "use strict";
-
 // Complete this algo
 const minJumps = arr => {
   debugger;
-  let count = 0;
-  for (let n = 0; n < arr.length; n++) {
-    let max = [];
-    for (let i = n + 1; i <= arr[n]; i++) {
-      max.push(arr[i]);
-      ++count;
+  let jumper = 0;
+  let jumps = 0;
+  while (jumper < arr.length - 1) {
+    let max = arr[jumper];
+    for (let i = jumper; i < jumper + arr[jumper]; i++) {
+      if (arr[i] > arr[max]) {
+        max = i;
+      }
     }
-    n = arr.indexOf(Math.max(...max));
+    jumper = max;
+    jumps++;
+    if (jumper >= arr.length - 1) return jumps;
+    jumper += arr[max];
+    jumps++;
   }
+  return jumps;
 };
-minJumps([2, 8, 4, 3, 2, 9, 6, 8]);
+minJumps([2, 4, 1, 1, 2, 3, 7, 1, 1, 3]);
 module.exports = minJumps;
